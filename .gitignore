@@ -1,0 +1,43 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.ipynb_checkpoints/
+
+# === Virtual Environment ===
+.venv/
+env/
+venv/
+ENV/
+
+# === Data ===
+data/*.csv
+
+# If you want to keep sample CSVs, comment the above and ignore large or raw files like this:
+# data/fake.csv
+# data/true.csv
+
+# === Model Files ===
+models/*.pkl
+models/*.joblib
+
+# === Streamlit Cache ===
+.streamlit/
+
+# === Logs and Artifacts ===
+*.log
+*.out
+*.tmp
+
+# === IDE Config ===
+.vscode/
+.idea/
+
+# === OS Specific ===
+.DS_Store
+Thumbs.db
+
+# === Misc ===
+*.bak
+*.swp
