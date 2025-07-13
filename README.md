@@ -123,12 +123,13 @@ F1-Score:  0.98 overall
 * Streamlit Team
 * Scikit-learn community
 
----
+---https://github.com/waheedkhan65
 
 ## 🙌 Author
 
 **Waheed ur Rahman**
-*BS Software Engineering Student, aspiring ML & Cybersecurity Pro*
-GitHub: [@yourusername](https://github.com/yourusername)
+*BS Software Engineering Student*
+GitHub: @waheedkhan65 https://github.com/waheedkhan65
+
 
 ---
