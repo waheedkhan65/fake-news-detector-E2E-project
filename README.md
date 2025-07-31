@@ -66,6 +66,8 @@ Place your datasets in the `data/` folder:
 Run the training script:
 ```bash
 python src/train.py
+or 
+python -m src.train.py
 ```
 
 This will:
