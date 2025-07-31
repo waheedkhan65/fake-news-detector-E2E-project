@@ -8,11 +8,15 @@ import seaborn as sns
 import pandas as pd
 import joblib
 import os
-
 from src.data_utils import load_data
 
 
-def train_model(fake_path, true_path, model_path='models/logistic_model.pkl', vectorizer_path='models/tfidf_vectorizer.pkl'):
+def save_object(obj, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    joblib.dump(obj, path)
+    print(f"✅ Saved: {path}")
+
+def train_model(fake_path, true_path, model_path, vectorizer_path):
     data = load_data(fake_path, true_path)
     X = data['text']
     y = data['label']
@@ -25,6 +29,9 @@ def train_model(fake_path, true_path, model_path='models/logistic_model.pkl', ve
 
     model = LogisticRegression(max_iter=1000)
     model.fit(X_train_vectorized, y_train)
+
+    save_object(model, model_path)
+    save_object(vectorizer, vectorizer_path)
 
     y_pred = model.predict(X_test_vectorized)
     accuracy = accuracy_score(y_test, y_pred)
@@ -39,10 +46,7 @@ def train_model(fake_path, true_path, model_path='models/logistic_model.pkl', ve
     print("Confusion Matrix:")
     print(cm_df)
 
-    # ...existing code...
-    print("Confusion Matrix:")
-    print(cm_df)
-
+    
     # Plot confusion matrix
     plt.figure(figsize=(6, 4))
     sns.heatmap(cm_df, annot=True, fmt='d', cmap='Blues')
@@ -51,14 +55,10 @@ def train_model(fake_path, true_path, model_path='models/logistic_model.pkl', ve
     plt.xlabel("Predicted")
     plt.show()
 
-    save_object(model, model_path)
-    save_object(vectorizer, vectorizer_path)
+    
     return model, vectorizer
 
 
-def save_object(obj, path):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    joblib.dump(obj, path)
 
 
 if __name__ == "__main__":
@@ -68,37 +68,3 @@ if __name__ == "__main__":
     vectorizer_path = 'models/tfidf_vectorizer.pkl'
 
     train_model(fake_path, true_path, model_path, vectorizer_path)
-
-
-
-
-# def train_model(fake_path, true_path):
-
-#     data = load_data(fake_path, true_path)
-
-#     X = data['text']
-#     y = data['label']
-
-#     X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_size=42)
-
-#     vextorizer = TfidfVectorizer()
-#     X_train_vectorized = vextorizer.fit_transform(X_train)
-#     X_test_vectorized = vextorizer.transform(X_test)
-
-#     model = LogisticRegression(max_iter=1000)
-#     model.fit(X_train_vectorized, y_train)
-
-#     y_pred = model.predict(X_test_vectorized)
-#     accuracy = accuracy_score(y_test, y_pred)
-#     report = classification_report(y_test, y_pred)
-#     print(f"Accuracy: {accuracy}")
-#     print("Classification Report:")
-#     print(report)
-
-#     joblib.dump(model, 'logistic_model.pkl')
-#     joblib.dump(vextorizer, 'tfidf_vectorizer.pkl')
-#     return model, vextorizer
-    
-
-
-
