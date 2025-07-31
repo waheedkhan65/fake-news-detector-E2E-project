@@ -1,89 +1,105 @@
-# Fake News Detection E2E Project
+# Fake and Real News Classification Project
 
 ## Overview
-
-This project is an end-to-end pipeline for detecting fake news using machine learning. It includes data preprocessing, model training, evaluation, and a Streamlit web app for interactive predictions.
+This project is a machine learning application that classifies news articles as either "fake" or "real" using logistic regression with TF-IDF vectorization. The system processes text data, trains a classification model, and provides evaluation metrics to assess performance.
 
 ## Project Structure
-
 ```
-.
+PROJECT ML/
+├── .venv/                   # Virtual environment
 ├── data/
-│   ├── fake.csv
-│   └── true.csv
+│   ├── fake.csv             # Dataset of fake news articles
+│   └── true.csv             # Dataset of true news articles
 ├── models/
-│   ├── logistic_model.pkl
-│   └── tfidf_vectorizer.pkl
+│   ├── logistic_model.pkl   # Trained logistic regression model
+│   └── tfidf_vectorizer.pkl # TF-IDF vectorizer
 ├── notebooks/
-│   └── data_info.ipynb
+│   └── data_info.ipynb      # Jupyter notebook for data exploration
 ├── src/
-│   ├── __init__.py
-│   ├── data_utils.py
-│   └── train.py
-├── streamlit/
-│   ├── __init__.py
-│   └── app.py
-├── tests/
-├── requirements.txt
-├── README.md
-└── template.py
+│   ├── data_utils.py        # Data loading and preprocessing utilities
+│   └── train.py            # Model training script
+├── tests/                   # Test files
+├── README.md                # Project documentation
+├── requirements.txt         # Python dependencies
+└── template.py             # Template file
 ```
 
-## Getting Started
+## Features
+- Text preprocessing including:
+  - Lowercasing
+  - Removing brackets, URLs, HTML tags
+  - Punctuation removal
+  - Digit removal
+- TF-IDF vectorization
+- Logistic Regression classifier
+- Model evaluation with:
+  - Accuracy score
+  - Classification report
+  - Confusion matrix visualization
 
-### 1. Install Dependencies
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone [repository-url]
+   cd project-ML-new
+   ```
 
-```sh
-pip install -r requirements.txt
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+### Data Preparation
+Place your datasets in the `data/` folder:
+- `fake.csv` - Fake news dataset
+- `true.csv` - Real news dataset
+
+### Training the Model
+Run the training script:
+```bash
+python src/train.py
 ```
 
-### 2. Data
+This will:
+1. Load and preprocess the data
+2. Train a logistic regression model
+3. Save the model and vectorizer to the `models/` folder
+4. Print evaluation metrics and show a confusion matrix
 
-- Place your datasets (`fake.csv`, `true.csv`) in the `data/` folder.
+### Expected Output
+After running the training script, you should see:
+- Accuracy score
+- Classification report (precision, recall, f1-score)
+- Confusion matrix visualization
 
-### 3. Training
+## Dependencies
+- Python 3.x
+- pandas
+- scikit-learn
+- matplotlib
+- seaborn
+- joblib
 
-- Run the training script to preprocess data and train the model:
+All dependencies are listed in `requirements.txt`.
 
-```sh
-python src/train.py 
-
-   or 
-
-python -m src.train
-
-```
-
-### 4. Streamlit App
-
-- Launch the web app for predictions:
-
-```sh
-streamlit run streamlit/app.py
-```
-
-## Notebooks
-
-- Explore and analyze the data in [`notebooks/data_info.ipynb`](notebooks/data_info.ipynb).
-
-## Code Modules
-
-- [`src/data_utils.py`](src/data_utils.py): Data loading and preprocessing functions.
-- [`src/train.py`](src/train.py): Model training and saving.
-- [`streamlit/app.py`](streamlit/app.py): Streamlit web app for fake news detection.
-
-## Model Artifacts
-
-- Trained model and vectorizer are saved in the `models/` directory.
-
-## Testing
-
-- Add your unit tests in the `tests/` directory.
-
-## Requirements
-
-- See [`requirements.txt`](requirements.txt) for all dependencies.
+## Customization
+To modify the project:
+1. Edit `data_utils.py` to change text preprocessing steps
+2. Modify `train.py` to:
+   - Use a different classifier
+   - Change train/test split ratio
+   - Add additional evaluation metrics
 
 ## License
+This project is open-source. Feel free to use and modify it as needed.
 
-This project is for
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request with your changes.
