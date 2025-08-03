@@ -1,4 +1,3 @@
-```markdown
 # 🧠 Fake and Real News Classification Project
 
 ## 📰 Overview
@@ -8,7 +7,6 @@ This project classifies news articles as either **"fake"** or **"real"** using a
 - **XGBoost Classifier**
 - An interactive **Streamlit web app** frontend
 
----
 
 ## 📁 Project Structure
 
