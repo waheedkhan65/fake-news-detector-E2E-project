@@ -1,107 +1,165 @@
-# Fake and Real News Classification Project
+```markdown
+# 🧠 Fake and Real News Classification Project
 
-## Overview
-This project is a machine learning application that classifies news articles as either "fake" or "real" using logistic regression with TF-IDF vectorization. The system processes text data, trains a classification model, and provides evaluation metrics to assess performance.
+## 📰 Overview
 
-## Project Structure
-```
-PROJECT ML/
-├── .venv/                   # Virtual environment
-├── data/
-│   ├── fake.csv             # Dataset of fake news articles
-│   └── true.csv             # Dataset of true news articles
-├── models/
-│   ├── logistic_model.pkl   # Trained logistic regression model
-│   └── tfidf_vectorizer.pkl # TF-IDF vectorizer
-├── notebooks/
-│   └── data_info.ipynb      # Jupyter notebook for data exploration
-├── src/
-│   ├── data_utils.py        # Data loading and preprocessing utilities
-│   └── train.py            # Model training script
-├── tests/                   # Test files
-├── README.md                # Project documentation
-├── requirements.txt         # Python dependencies
-└── template.py             # Template file
+This project classifies news articles as either **"fake"** or **"real"** using a machine learning pipeline built with:
+- **TF-IDF Vectorization**
+- **XGBoost Classifier**
+- An interactive **Streamlit web app** frontend
+
+---
+
+## 📁 Project Structure
+
 ```
 
-## Features
-- Text preprocessing including:
-  - Lowercasing
-  - Removing brackets, URLs, HTML tags
-  - Punctuation removal
-  - Digit removal
-- TF-IDF vectorization
-- Logistic Regression classifier
-- Model evaluation with:
-  - Accuracy score
-  - Classification report
-  - Confusion matrix visualization
+project-root/
+│
+├── data/                  # Raw data files
+│   ├── fake.csv
+│   ├── true.csv
+│   └── **init**.py
+│
+├── models/                # Saved model and vectorizer
+│   ├── xgboost\_model.pkl
+│   └── tfidf\_vectorizer.pkl
+│
+├── notebooks/             # Jupyter notebooks for EDA
+│   └── data\_info.ipynb
+│
+├── src/                   # Core training and data utility code
+│   ├── **init**.py
+│   ├── data\_utils.py
+│   └── train.py
+│
+├── streamlit/             # Streamlit web application
+│   ├── **init**.py
+│   └── app.py
+│
+├── tests/                 # Placeholder for unit tests
+│
+├── .gitignore
+├── requirements.txt
+├── template.py
+└── README.md
 
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone [repository-url]
-   cd project-ML-new
-   ```
+````
 
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
+---
 
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## ✨ Features
 
-## Usage
+- **Text Cleaning & Preprocessing**
+- **TF-IDF Feature Extraction**
+- **XGBoost Model for Binary Classification**
+- **Performance Evaluation**
+- **Interactive News Prediction via Streamlit**
 
-### Data Preparation
-Place your datasets in the `data/` folder:
-- `fake.csv` - Fake news dataset
-- `true.csv` - Real news dataset
+---
 
-### Training the Model
-Run the training script:
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/fake-news-detector.git
+cd fake-news-detector
+````
+
+### 2. Create a Virtual Environment
+
+```bash
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# macOS/Linux
+source .venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🚀 Model Training
+
+### Step 1: Place Data
+
+Ensure your `data/` folder contains:
+
+* `fake.csv`
+* `true.csv`
+
+### Step 2: Train the Model
+
 ```bash
 python src/train.py
-or 
-python -m src.train.py
 ```
 
 This will:
-1. Load and preprocess the data
-2. Train a logistic regression model
-3. Save the model and vectorizer to the `models/` folder
-4. Print evaluation metrics and show a confusion matrix
 
-### Expected Output
-After running the training script, you should see:
-- Accuracy score
-- Classification report (precision, recall, f1-score)
-- Confusion matrix visualization
+* Preprocess data
+* Train an XGBoost classifier
+* Save the model to `models/`
+* Display accuracy, confusion matrix, and a classification report
 
-## Dependencies
-- Python 3.x
-- pandas
-- scikit-learn
-- matplotlib
-- seaborn
-- joblib
+---
 
-All dependencies are listed in `requirements.txt`.
+## 🖥 Streamlit Web Interface
 
-## Customization
-To modify the project:
-1. Edit `data_utils.py` to change text preprocessing steps
-2. Modify `train.py` to:
-   - Use a different classifier
-   - Change train/test split ratio
-   - Add additional evaluation metrics
+### Launch the Web App:
 
-## License
-This project is open-source. Feel free to use and modify it as needed.
+```bash
+streamlit run streamlit/app.py
+```
 
-## Contributing
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+### App Features:
+
+* Input any news article text
+* See prediction result instantly (`Real News` ✅ or `Fake News` ❌)
+* Friendly and responsive UI
+* Uses trained model and TF-IDF vectorizer from `models/`
+
+---
+
+## 📊 Example Output
+
+* **Accuracy:** \~93% (XGBoost)
+* **Visual Confusion Matrix**
+* **Classification Report (Precision, Recall, F1-score)**
+
+---
+
+## 🔧 Customization Options
+
+* Modify text preprocessing in `src/data_utils.py`
+* Replace or extend the model in `src/train.py`
+* Add advanced UI features in `streamlit/app.py`
+
+---
+
+## 📦 Tech Stack
+
+* Python
+* pandas, scikit-learn
+* XGBoost
+* Streamlit
+* seaborn, matplotlib
+
+---
+
+## 📜 License
+
+MIT License — Feel free to use, modify, and distribute.
+
+---
+
+## 🤝 Contributing
+
+Have ideas or improvements? PRs are welcome!
+
+---
