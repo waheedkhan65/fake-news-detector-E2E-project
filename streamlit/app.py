@@ -68,7 +68,7 @@ st.markdown(
 # Load Model and Vectorizer
 try:
     vectorizer = joblib.load('models/tfidf_vectorizer.pkl')
-    model = joblib.load('models/logistic_model.pkl')
+    model = joblib.load('models/xgboost_model.pkl')
 except Exception as e:
     st.error(f"❌ Error loading model or vectorizer: {e}")
     st.stop()
